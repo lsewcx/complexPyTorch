@@ -211,10 +211,10 @@ def complex_dropout2d(inp, p=0.5, training=True):
     mask.type(inp.dtype)
     return mask * inp
 
-def complex_softmax(inp, dim, dtype=torch.complex64):
+def complex_softmax(inp, dim):
     """
     Perform complex softmax.
     """
-    real_softmax = softmax(inp.real, dim=dim, dtype=dtype)
-    imag_softmax = softmax(inp.imag, dim=dim, dtype=dtype)
+    real_softmax = softmax(inp.real, dim=dim)
+    imag_softmax = softmax(inp.imag, dim=dim)
     return real_softmax.type(torch.complex64) + 1j * imag_softmax.type(torch.complex64)
